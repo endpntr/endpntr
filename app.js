@@ -26,7 +26,7 @@ app.get("/req/:endpoint_id/:request_id", catchError(webhook.viewRequest));
 
 app.post("/", catchError(webhook.processRequest));
 
-// // Ignore Favicon
+// Ignore Favicon
 app.get('/*', errors.handleFavicon);
 
 // Catch-all error handler
