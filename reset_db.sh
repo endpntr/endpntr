@@ -5,5 +5,5 @@ DATABASE_NAME=$1
 dropdb $DATABASE_NAME --if-exists
 createdb $DATABASE_NAME
 
-psql $DATABASE_NAME < schema.sql
-psql $DATABASE_NAME < lib/seed-data.sql
+psql $DATABASE_NAME < ./sql/schema.sql
+psql $DATABASE_NAME < ./sql/seed-data.sql
