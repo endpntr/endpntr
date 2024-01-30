@@ -30,16 +30,11 @@ app.post("/", catchError(webhook.processRequest));
 // Ignore Favicon
 app.get("/*", errors.handleFavicon);
 
-// Catch-all error handler
-app.use(errors.generalErrorHandler);
-
 // attach the `res` subdomain to the main app
 app.use(subdomain("req", app));
 app.use(subdomain("*", app));
 
-app.use((err, _, res, _) => {
-  console.error(err);
-  res.status(500).send();
-});
+// Catch-all error handler
+app.use(errors.generalErrorHandler);
 
 app.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
