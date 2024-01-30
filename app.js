@@ -25,7 +25,6 @@ app.post("/createEndpoint", catchError(webhook.createNewEndpoint));
 app.get("/req/:endpoint_id", catchError(webhook.viewEndpoint));
 app.get("/req/:endpoint_id/:request_id", catchError(webhook.viewRequest));
 
-// CHANGE BACK TO POST AFTER
 app.post("/", catchError(webhook.processRequest));
 
 // Ignore Favicon
@@ -37,4 +36,10 @@ app.use(errors.generalErrorHandler);
 // attach the `res` subdomain to the main app
 app.use(subdomain("req", app));
 app.use(subdomain("*", app));
+
+app.use((err, _, res, _) => {
+  console.error(err);
+  res.status(500).send();
+});
+
 app.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
