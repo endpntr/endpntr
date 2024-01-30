@@ -6,7 +6,7 @@ const morgan = require("morgan");
 
 const config = require("./lib/config");
 const webhook = require("./lib/middleware").webhooksMiddleware;
-const errors = require("./lib/middleware").errors;
+const errors  = require("./lib/middleware").errors;
 const catchError = require("./lib/catch-error");
 
 const app = express();
@@ -35,6 +35,6 @@ app.get("/*", errors.handleFavicon);
 app.use(errors.generalErrorHandler);
 
 // attach the `res` subdomain to the main app
-app.use(subdomain("req", app));
-app.use(subdomain("*", app));
+app.use(subdomain('req', app));
+app.use(subdomain('*', app));
 app.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
