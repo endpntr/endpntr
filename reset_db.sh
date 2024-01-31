@@ -1,4 +1,4 @@
-# Run with `bash reset_db.sh <name-of-database>`
+# Run with `bash reset_db.sh endpntr`
 
 DATABASE_NAME=$1
 

@@ -20,19 +20,19 @@ const endpoint = subdomain("*.req", (req, res, next) => {});
 app.use(morgan("common"));
 app.use(endpoint);
 
+// attach the `res` subdomain to the main app
+app.use(subdomain("req", app));
+app.use(subdomain("*", app));
+
 app.get("/", (_, res) => res.render("index"));
 app.post("/createEndpoint", catchError(webhook.createNewEndpoint));
-app.get("/req/:endpoint_id", catchError(webhook.viewEndpoint));
-app.get("/req/:endpoint_id/:request_id", catchError(webhook.viewRequest));
+app.get("/req/:endpointHash", catchError(webhook.viewEndpoint));
+app.get("/req/:endpointHash/:requestHash", catchError(webhook.viewRequest));
 
 app.post("/", catchError(webhook.processRequest));
 
 // Ignore Favicon
 app.get("/*", errors.handleFavicon);
-
-// attach the `res` subdomain to the main app
-app.use(subdomain("req", app));
-app.use(subdomain("*", app));
 
 // Catch-all error handler
 app.use(errors.generalErrorHandler);
