@@ -2,7 +2,9 @@ INSERT INTO endpoints(endpoint_hash, endpoint_name) VALUES
   ('q0Y06dR8', 'default1'),
   ('Qf8yrY5f', 'default2'),
   ('PTVeEMLQ', 'default3'),
-  ('df47-173-48-224-131', 'default6');
+  ('super-gobbler-robust', 'default4'),
+  ('hawk-proven-curiously', 'default5'),
+  ('painfully-singular-chow', 'default6');
 
 INSERT INTO requests(request_hash, endpoint_id, endpoint_hash, http_method, http_path) VALUES 
   ('AickKFLV0ILYhffE', 1, 'q0Y06dR8', 'GET', '/request1'),
