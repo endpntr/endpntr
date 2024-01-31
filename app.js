@@ -20,10 +20,6 @@ const endpoint = subdomain("*.req", (req, res, next) => {});
 app.use(morgan("common"));
 app.use(endpoint);
 
-// attach the `res` subdomain to the main app
-app.use(subdomain("req", app));
-app.use(subdomain("*", app));
-
 app.get("/", (_, res) => res.render("index"));
 app.post("/createEndpoint", catchError(webhook.createNewEndpoint));
 app.get("/req/:endpointHash", catchError(webhook.viewEndpoint));
@@ -36,5 +32,9 @@ app.get("/*", errors.handleFavicon);
 
 // Catch-all error handler
 app.use(errors.generalErrorHandler);
+
+// attach the `res` subdomain to the main app
+app.use(subdomain("req", app));
+app.use(subdomain("*", app));
 
 app.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
