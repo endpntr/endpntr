@@ -8,6 +8,15 @@ html(lang="en-US")
   body 
     header 
       h1 EndPntr
-      block content 
       block requestList
-    
+
+      block content 
+        section
+          p Welcome to EndPntr! 
+          p The button below will create an endpoint for you to attach a webhook to.
+          p "Endpoints" are just URLs that can be used to send notifications to. 
+          p A "webhook" is ....
+
+      block makeEndpoint
+        form(action="/createEndpoint" method="post")
+          button Make New Endpoint

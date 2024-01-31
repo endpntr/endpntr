@@ -1,0 +1,8 @@
+extends layout 
+
+block requestList 
+  section 
+    ul 
+      each request in requests 
+        li 
+          a(href=`/req/${request.endpointHash}/${request.requestHash}`) #{request.method} #{request.path}
