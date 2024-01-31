@@ -1,8 +1,9 @@
-html(lang="en-US")
-  head 
-  title Sample 
-  body 
-  header 
-    h1 Test application
-    form(action="/createEndpoint" method="post")
-      button Make New Endpoint
+extends layout
+
+block content
+  p Welcome to EndPntr! 
+  p The button below will create an endpoint for you to attach a webhook to.
+  p "Endpoints" are just URLs that can be used to send notifications to. 
+  p A "webhook" is ....
+  form(action="/createEndpoint" method="post")
+    button Make New Endpoint
