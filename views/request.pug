@@ -1,5 +1,11 @@
 extends layout 
 
 block content 
+  
 
 block requestList 
+  section 
+    ul 
+      each request in requests 
+        li
+          a(href=`/req/${request.endpoint_hash}/${request.request_hash}`) #{request.http_method} #{request.http_path}

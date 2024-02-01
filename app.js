@@ -24,7 +24,7 @@ app.use(endpoint);
 app.get("/", (_, res) => res.render("index"));
 app.post("/createEndpoint", catchError(webhook.createNewEndpoint));
 app.get("/req/:endpointHash", catchError(webhook.viewEndpoint));
-app.get("/req/:endpointHash/:requestHash", catchError(webhook.viewRequest));
+app.get("/req/:endpointHash/:requestHash", catchError(webhook.displayRequest));
 
 app.post("/", catchError(webhook.processRequest));
 
