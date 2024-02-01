@@ -18,6 +18,7 @@ app.set("view engine", "pug");
 const endpoint = subdomain("*.req", (req, res, next) => {});
 
 app.use(morgan("common"));
+app.use(express.urlencoded({ extended: false }));
 app.use(endpoint);
 
 app.get("/", (_, res) => res.render("index"));
