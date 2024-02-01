@@ -10,7 +10,7 @@ CREATE TABLE requests (
   request_hash text NOT NULL,
   endpoint_id integer REFERENCES endpoints(endpoint_id) ON DELETE CASCADE,
   endpoint_hash text NOT NULL,
-  document_id integer,
+  document_id text,
   http_method varchar(10) NOT NULL,
   http_path text NOT NULL,
   received_at timestamp DEFAULT NOW()
