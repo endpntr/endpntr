@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LSCS2401-08/endpntr#readme",
   "dependencies": {
+    "bson": "^6.2.0",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-subdomain": "^1.0.5",
