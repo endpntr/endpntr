@@ -1,5 +1,23 @@
-extends layout 
+extends layout
 
-block content 
+block content
+  section
+    h3 headers
+    ul
+      each header in headers
+        li
+          p #{header[0]} : #{header[1]}
 
-block requestList 
+
+    h3 body
+    p #{body.payload}
+
+block requestList
+  h3 Requests
+  section
+    ul
+      each request in requests
+        li
+          a(href=`/req/${request.endpoint_hash}/${request.request_hash}`) #{request.http_method} #{request.http_path}
+
+block makeEndpoint
