@@ -20,6 +20,7 @@ app.set("view engine", "pug");
 app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
 // app.use(endpoint);
+app.use(express.json());
 
 app.get("/", (_, res) => res.render("index"));
 app.post("/createEndpoint", catchError(webhook.createNewEndpoint));
