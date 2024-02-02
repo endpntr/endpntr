@@ -4,7 +4,8 @@
   "description": "Request Bin clone",
   "main": "app.js",
   "scripts": {
-    "start": "npx nodemon app.js"
+    "start": "npx nodemon app.js",
+    "build:ui": "rm -rf dist && cd ../endpntr-frontend && npm run build && cp -r dist ../endpntr"
   },
   "repository": {
     "type": "git",

@@ -14,6 +14,7 @@ const PORT = config.PORT;
 app.set("views", "./views");
 app.set("view engine", "pug");
 
+app.use(express.static("dist"));
 app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
