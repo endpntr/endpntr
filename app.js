@@ -1,7 +1,6 @@
 "use strict";
 
 const express = require("express");
-const subdomain = require("express-subdomain");
 const morgan = require("morgan");
 
 const config = require("./lib/config");
@@ -15,14 +14,10 @@ const PORT = config.PORT;
 app.set("views", "./views");
 app.set("view engine", "pug");
 
-// const endpoint = subdomain("*.req", (req, res, next) => {});
-
 app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
-// app.use(endpoint);
 app.use(express.json());
 
-// app.get("/", (_, res) => res.render("index"));
 app.post("/api/createEndpoint", catchError(webhook.createNewEndpoint));
 app.get("/api/req/:endpointHash", catchError(webhook.getRequestsHandler));
 app.get(
@@ -30,7 +25,7 @@ app.get(
   catchError(webhook.getPayloadHandler),
 );
 
-app.post("/req/:endpointHash", catchError(webhook.processRequest));
+app.post("/api/req/:endpointHash", catchError(webhook.processRequest));
 
 // Ignore Favicon
 app.get("/*", errors.handleFavicon);
