@@ -1,11 +1,16 @@
-extends layout 
+extends layout
 
 block makeEndpoint
 block content
 
-block requestList 
-  section 
-    ul 
-      each request in requests 
-        li
-          a(href=`/req/${request.endpoint_hash}/${request.request_hash}`) #{request.http_method} #{request.http_path}
+block requestList
+  if requests.length === 0
+    p This Endpoint has not received any Messages yet!
+    p Point a webhook at https://#{endpointHash}.req.endpntr.com and send the first one!
+    p As soon as this endpoint has received messages, they will be listed here.
+  else
+    section
+        ul
+        each request in requests
+            li
+            a(href=`/req/${request.endpoint_hash}/${request.request_hash}`) #{request.http_method} #{request.http_path}
