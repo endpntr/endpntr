@@ -2,6 +2,7 @@
 
 const express = require("express");
 const morgan = require("morgan");
+const path = require("path");
 
 const config = require("./lib/config");
 const webhook = require("./lib/middleware").webhooksMiddleware;
@@ -11,13 +12,18 @@ const catchError = require("./lib/catch-error");
 const app = express();
 const PORT = config.PORT;
 
-app.set("views", "./views");
-app.set("view engine", "pug");
+if (config.ENV === "staging" || config.ENV === "prod") {
+  app.use(express.static("dist"));
+}
 
-app.use(express.static("dist"));
 app.use(morgan("common"));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.get(/^(?!\/api).*/, (_, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 app.post("/api/createEndpoint", catchError(webhook.createNewEndpoint));
 app.get("/api/req/:endpointHash", catchError(webhook.getRequestsHandler));
