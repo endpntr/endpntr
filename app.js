@@ -5,13 +5,13 @@ const morgan = require("morgan");
 const path = require("path");
 
 const config = require("./lib/config");
-const webhook = require("./lib/middleware").webhooksMiddleware;
-const errors = require("./lib/middleware").errors;
-const catchError = require("./lib/catch-error");
+const { webhook, error } = require("./lib/middleware");
+const catchError = require("./helper/catch-error");
 
 const app = express();
 const PORT = config.PORT;
 
+// Make sure to have this set if running a built react app
 if (config.ENV === "staging" || config.ENV === "prod") {
   app.use(express.static("dist"));
 }
@@ -41,9 +41,9 @@ app.get(
 );
 
 // Ignore Favicon
-app.get("/*", errors.handleFavicon);
+app.get("/*", error.handleFavicon);
 
 // Catch-all error handler
-app.use(errors.generalErrorHandler);
+app.use(error.generalErrorHandler);
 
 app.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));

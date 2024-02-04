@@ -1,7 +1,7 @@
 "use strict";
 
 const { Client } = require("pg");
-const config = require("./config");
+const config = require("../lib/config");
 
 const logQuery = (statement, parameters) => {
   let timeStamp = new Date();
