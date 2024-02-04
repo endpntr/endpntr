@@ -26,13 +26,19 @@ app.get(/^(?!\/api).*/, (_, res) => {
 });
 
 app.post("/api/createEndpoint", catchError(webhook.createNewEndpoint));
-app.get("/api/req/:endpointHash", catchError(webhook.getRequestsHandler));
+
+// Routes for handling reququests to new endpoint
+app.get("/api/req/:endpointHash", catchError(webhook.processRequest));
+app.post("/api/req/:endpointHash", catchError(webhook.processRequest));
+app.put("/api/req/:endpointHash", catchError(webhook.processRequest));
+app.delete("/api/req/:endpointHash", catchError(webhook.processRequest));
+
+// Routes for getting info for client render
+app.get("/api/:endpointHash", catchError(webhook.getRequestsHandler));
 app.get(
-  "/api/req/:endpointHash/:requestHash",
+  "/api/:endpointHash/:requestHash",
   catchError(webhook.getPayloadHandler),
 );
-
-app.post("/api/req/:endpointHash", catchError(webhook.processRequest));
 
 // Ignore Favicon
 app.get("/*", errors.handleFavicon);
