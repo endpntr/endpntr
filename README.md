@@ -3,31 +3,26 @@ endpntr is a tool designed to allow developers to monitor webhook notifications
 - It allows you to monitor generic HTTP requests as well
 - Provides you with detailed informatin about request headers, as well as paylaod
 
-## Instuctions
-1. 
+## Instructions to run app
+### 1. Clone the repo
 ```
 git clone https://github.com/LSCS2401-08/endpntr.git
 ```
-2.
+### 2. Install packages
 ```
 npm install
 ```
-3. Make sure you have both `postgresql` and `mongodb` installed
+### 3. Make sure you have both `postgresql` and `mongodb` installed
 - MongoDB is community edition
 - Postgres used to test was Postgres 12
 
-4. Set up necessary schema in postgres database
+### 4. Set up necessary schema in postgres database
 - From the root of the project
 ```
 ./bin/reset_db.sh
 ```
 
-5. Start the server
-- Can use `npm start` for `nodemon`
-```
-npm run server
-```
-## Environment variables to include:
+### 5. Environment variables to include:
 ```
 PORT='your application port'
 USER='your user'
@@ -37,4 +32,19 @@ POSTGRES_PORT='PORT for pg, use \conninfo to view'
 MONGO_URL='mongodb://localhost:some_port'
 MONGO_DB_NAME='database_name'
 ENV='staging or prod or dev'
+```
+
+### 6. Start the server
+- Can alternatively `npm start` for `nodemon`
+```
+npm run server
+```
+
+### 7. Expsoing localhost endpoint using ngrok
+- We need a way to expose a public IP address to register an endpoint with webhook provider
+- ngrok is used for this purpose in testing
+- Replace domain name with whatever ngrok produces
+
+```
+ngrok http localhost:3000
 ```
