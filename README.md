@@ -40,7 +40,7 @@ ENV='staging or prod or dev'
 npm run server
 ```
 
-### 7. Expsoing localhost endpoint using ngrok
+### 7. Exposing localhost endpoint using ngrok
 - We need a way to expose a public IP address to register an endpoint with webhook provider
 - ngrok is used for this purpose in testing
 - Replace domain name with whatever ngrok produces
