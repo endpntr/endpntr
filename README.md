@@ -3,6 +3,8 @@ endpntr is a tool designed to allow developers to monitor webhook notifications
 - It allows you to monitor generic HTTP requests as well
 - Provides you with detailed informatin about request headers, as well as paylaod
 
+To see frontend react app, go to: https://github.com/LSCS2401-08/endpntr-frontend
+
 ## Instructions to run app
 ### 1. Clone the repo
 ```
