@@ -1,5 +1,5 @@
 # endpntr
-endpntr is a tool designed to allow developers to monitor webhook notifications
+endpntr is a tool designed to allow developers to monitor webhooks by generating a random endpoint to target
 - It allows you to monitor generic HTTP requests as well
 - Provides you with detailed informatin about request headers, as well as paylaod
 
