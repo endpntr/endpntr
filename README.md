@@ -1,7 +1,7 @@
 # endpntr
 endpntr is a tool that allows developers to monitor webhooks by generating random endpoints to target
 - It allows you to monitor generic HTTP requests as well
-- Provides you with detailed informatin about request headers, as well as paylaod
+- Provides you with detailed information about request headers, as well as payload
 
 To see frontend react app, go to: https://github.com/LSCS2401-08/endpntr-frontend
 
