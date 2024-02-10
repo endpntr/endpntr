@@ -21,17 +21,10 @@ app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get(/^(?!\/api).*/, (_, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-
 app.post("/api/createEndpoint", catchError(webhook.createNewEndpoint));
 
 // Routes for handling reququests to new endpoint
-app.get("/api/req/:endpointHash", catchError(webhook.processRequest));
-app.post("/api/req/:endpointHash", catchError(webhook.processRequest));
-app.put("/api/req/:endpointHash", catchError(webhook.processRequest));
-app.delete("/api/req/:endpointHash", catchError(webhook.processRequest));
+app.all("/api/req/:endpointHash", catchError(webhook.processRequest));
 
 // Routes for getting info for client render
 app.get("/api/:endpointHash", catchError(webhook.getRequestsHandler));
@@ -39,6 +32,11 @@ app.get(
   "/api/:endpointHash/:requestHash",
   catchError(webhook.getPayloadHandler),
 );
+
+// Catch all
+app.get("/", (_, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 // Ignore Favicon
 app.get("/*", error.handleFavicon);
