@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const path = require("path");
 
 const config = require("./lib/config");
-const { webhook, error } = require("./lib/middleware");
+const { webhook, error, general } = require("./lib/middleware");
 const catchError = require("./helper/catch-error");
 
 const app = express();
@@ -18,6 +18,7 @@ if (config.ENV === "staging" || config.ENV === "prod") {
 
 app.use(morgan("common"));
 
+app.use(general.initSession());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -34,12 +35,9 @@ app.get(
 );
 
 // Catch all
-app.get("/", (_, res) => {
+app.get("/*", (_, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
-
-// Ignore Favicon
-app.get("/*", error.handleFavicon);
 
 // Catch-all error handler
 app.use(error.generalErrorHandler);
