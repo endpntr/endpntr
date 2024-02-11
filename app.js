@@ -1,13 +1,13 @@
 "use strict";
 
-const { app, express, enableWS, server } = require("./lib/server-config");
+const express = require("express");
 const morgan = require("morgan");
+const path = require("path");
 
+const { app } = require("./bin/www/server");
 const config = require("./lib/config");
-const { webhook, error, general } = require("./lib/middleware");
-const catchError = require("./helper/catch-error");
-
-const PORT = config.PORT;
+const { error } = require("./lib/middleware");
+const endpoint = require("./routes/endpoint");
 
 // Make sure to have this set if running a built react app
 if (config.ENV === "staging" || config.ENV === "prod") {
@@ -19,26 +19,12 @@ app.use(morgan("common"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.post("/api/createEndpoint", catchError(webhook.createNewEndpoint));
+app.use("/api", endpoint);
 
-// Routes for handling reququests to new endpoint
-app.all("/api/req/:endpointHash", catchError(webhook.processRequest));
-
-// Routes for getting info for client render
-app.get("/api/:endpointHash", catchError(webhook.getRequestsHandler));
-app.get(
-  "/api/:endpointHash/:requestHash",
-  catchError(webhook.getPayloadHandler),
-);
-
-enableWS();
-
-// Catch all
+// Catch all to server react app
 app.get("/*", (_, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 // Catch-all error handler
 app.use(error.generalErrorHandler);
-
-server.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
