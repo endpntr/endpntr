@@ -1,14 +1,12 @@
 "use strict";
 
-const express = require("express");
+const { app, express, enableWS, server } = require("./lib/servers");
 const morgan = require("morgan");
-const path = require("path");
 
 const config = require("./lib/config");
 const { webhook, error, general } = require("./lib/middleware");
 const catchError = require("./helper/catch-error");
 
-const app = express();
 const PORT = config.PORT;
 
 // Make sure to have this set if running a built react app
@@ -35,11 +33,13 @@ app.get(
 );
 
 // Catch all
-app.get("/*", (_, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
+// app.get("/*", (_, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+
+enableWS();
 
 // Catch-all error handler
 app.use(error.generalErrorHandler);
 
-app.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
+server.listen(PORT, () => console.log("Team08 RequestBin clone is running..."));
