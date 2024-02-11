@@ -34,12 +34,9 @@ app.get(
 );
 
 // Catch all
-app.get("/", (_, res) => {
+app.get("/*", (_, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
-
-// Ignore Favicon
-app.get("/*", error.handleFavicon);
 
 // Catch-all error handler
 app.use(error.generalErrorHandler);
