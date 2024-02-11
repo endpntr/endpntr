@@ -7,8 +7,6 @@ To see frontend react app, go to: https://github.com/LSCS2401-08/endpntr-fronten
 
 ![image](https://github.com/LSCS2401-08/endpntr/assets/93304067/1b008b50-2787-4995-bca4-4e72931514f0)
 
-![image](https://github.com/LSCS2401-08/endpntr/assets/93304067/435de692-8287-4c7f-80cd-3f03cfece7ae)
-
 ## Instructions to run app
 ### 1. Clone the repo
 ```
