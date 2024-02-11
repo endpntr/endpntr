@@ -1,7 +1,7 @@
 const express = require("express");
 const endpoint = express.Router();
 const { webhook } = require("../lib/middleware.js");
-const catchError = require("../helper/catch-error.js");
+const catchError = require("../utils/catch-error.js");
 
 endpoint.post("/createEndpoint", catchError(webhook.createNewEndpoint));
 
