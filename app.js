@@ -1,6 +1,6 @@
 "use strict";
 
-const { app, express, enableWS, server } = require("./lib/servers");
+const { app, express, enableWS, server } = require("./lib/server-config");
 const morgan = require("morgan");
 
 const config = require("./lib/config");
@@ -32,12 +32,12 @@ app.get(
   catchError(webhook.getPayloadHandler),
 );
 
-// Catch all
-// app.get("/*", (_, res) => {
-//   res.sendFile(path.join(__dirname, "dist", "index.html"));
-// });
-
 enableWS();
+
+// Catch all
+app.get("/*", (_, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 // Catch-all error handler
 app.use(error.generalErrorHandler);
