@@ -16,7 +16,6 @@ if (config.ENV === "staging" || config.ENV === "prod") {
 
 app.use(morgan("common"));
 
-app.use(general.initSession());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
