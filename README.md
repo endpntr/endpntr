@@ -46,9 +46,9 @@ npm run server
 
 ### 7. Exposing localhost endpoint using ngrok
 - We need a way to expose a public IP address to register an endpoint with webhook provider
-- ngrok is used for this purpose in testing
-- Replace domain name with whatever ngrok produces
+- ngrok is used for this purpose
+- To run ngrok with the required flags for testing, run the command below
 
 ```
-ngrok http localhost:3000
+./bin/ngrok
 ```

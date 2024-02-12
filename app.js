@@ -10,6 +10,7 @@ const { error } = require("./lib/middleware");
 const endpoint = require("./routes/endpoint");
 
 // Make sure to have this set if running a built react app
+// In prod, better idea to serve this from web server
 if (config.ENV === "staging" || config.ENV === "prod") {
   app.use(express.static("dist"));
 }
@@ -21,7 +22,7 @@ app.use(express.json());
 
 app.use("/api", endpoint);
 
-// Catch all to server react app
+// Catch all to serve react app
 app.get("/*", (_, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
