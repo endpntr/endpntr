@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+const https = require("https");
 const config = require("../../lib/config");
 const { readFileSync } = require("fs");
 
 let server;
 
 if (config.ENV === "production") {
-  server = http.createServer(
+  server = https.createServer(
     {
       cert: readFileSync(config.TLS_CERT),
       key: readFileSync(config.TLS_KEY),
